@@ -28,9 +28,7 @@ public class ParseFile {
 		ArrayList<Integer> prefs = new ArrayList<Integer>();
 		while(s.hasNextLine()) {
 			nxtLine = s.nextLine();
-			System.out.println(nxtLine);
 			if(nxtLine.contains(nbr + ":")) {
-				System.out.println("found the line");
 				prefs = parsePref(nxtLine);
 			}
 		}
@@ -39,8 +37,8 @@ public class ParseFile {
 
 	private ArrayList<Integer> parsePref(String nxtLine) {
 		ArrayList<Integer> prefs = new ArrayList<Integer>();
-		nxtLine.substring(3);
-		for(String s : nxtLine.split(" ")){
+		String subLine = nxtLine.substring(3);
+		for(String s : subLine.split(" ")){
 			prefs.add(Integer.parseInt(s));
 		}
 		return prefs;
