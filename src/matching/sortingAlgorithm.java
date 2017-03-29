@@ -54,7 +54,7 @@ public class sortingAlgorithm {
 		
 		for(Person p : list){
 			
-			
+			if(proposedToList.get(i) == null);
 			
 		}
 		
