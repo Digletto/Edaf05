@@ -10,7 +10,32 @@ public class sortingAlgorithm {
 
 	//woman-man
 	private HashMap<Person,Person> pairs;
-	private ArrayList<ArrayList<Person>> proposedToList;
+	private ArrayList<ArrayList<Integer>> proposedToList;
+	
+	HashMap<Integer, Person> menList = new HashMap<Integer, Person>();
+	HashMap<Integer, Person> womenList = new HashMap<Integer, Person>();
+	Person m1;
+	
+	
+	
+	public sortingAlgorithm(){
+		
+		Person m1 =new Person(1,"m");
+		Person m2 =new Person(3,"m'");
+		Person w1 =new Person(2,"w");
+		Person w2 =new Person(4,"w'");
+		
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		list.add(7);
+		
+		m1.setPreferenceList(list);
+		
+		menList.put(1,m1);
+		menList.put(3,m2);
+		womenList.put(2,w1);
+		womenList.put(4,w2);
+		
+	}
 	
 	public HashMap<Person,Person> sort(HashMap<Integer, Person> menList, HashMap<Integer, Person> womenList){
 		
@@ -20,7 +45,6 @@ public class sortingAlgorithm {
 			
 			Person m = firstFreeMan(menList);
 			Person w = firstWomanToProposeTo(m);
-			int womanIndex = firstWomanIndex();
 			
 			if(w.getEngagementIndex() == -1){
 				
@@ -42,27 +66,24 @@ public class sortingAlgorithm {
 		
 	}
 
-	//first woman on m’s list to whom m has not yet proposed
-	private int firstWomanIndex() {
-		
-		return 0;
-	}
-
 	private Person firstWomanToProposeTo(Person m) {
 		
-		ArrayList<Person> list = m.getPreferenceList();
+		ArrayList<Integer> list = m.getPreferenceList();
+		int index = -1;
 		
-		for(Person p : list){
+		for(Integer i : list){
 			
-			if(!proposedToList.contains(p)){
+			if(!proposedToList.get(m.nbr).contains(i)){
 				
-				return p;
+				proposedToList.get(m.nbr).add(new Integer(i));
+				index = i;
+				break;
 				
 			}
 			
 		}
 		
-		return null;
+		return womenList.get(index);
 	}
 
 	private Person firstFreeMan(HashMap<Integer, Person> manList) {
@@ -88,5 +109,12 @@ public class sortingAlgorithm {
 		return false;
 	}
 	
+	public static void main(String[] args){
+		
+		Person m1 =new Person(1,"m");
+		sortingAlgorithm sa = new sortingAlgorithm();
+		//System.out.println(sa.firstPersonToPropose(m1));
+		
+	}
 	
 }
