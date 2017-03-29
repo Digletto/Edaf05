@@ -10,15 +10,17 @@ public class ParseFile {
 	Scanner s;
 
 	public ParseFile(String path) {
-		File f = new File(path);
 		try {
+		File f = new File(path);
 			s = new Scanner(f);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	
+	public ArrayList<Integer> parsePref(Person p){
+		return parsePreference(p);
+	}
 	
 	private ArrayList<Integer> parsePreference(Person p) {
 		int nbr = p.getNbr();
@@ -26,8 +28,11 @@ public class ParseFile {
 		ArrayList<Integer> prefs = new ArrayList<Integer>();
 		while(s.hasNextLine()) {
 			nxtLine = s.nextLine();
-			if(nxtLine.contains(nbr + ":"))
+			System.out.println(nxtLine);
+			if(nxtLine.contains(nbr + ":")) {
+				System.out.println("found the line");
 				prefs = parsePref(nxtLine);
+			}
 		}
 		return prefs;
 	}
