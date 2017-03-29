@@ -37,5 +37,9 @@ public class Person {
 	public int getNbr() {
 		return nbr;
 	}
+
+	public String getName() {
+		return name;
+	}
 	
 }

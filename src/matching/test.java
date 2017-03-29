@@ -12,5 +12,14 @@ public class test {
 		prefList = pf.parsePref(p);
 		for(Integer i : prefList)
 			System.out.print(i + " ");
+		
+		ArrayList<Person> menList = new ArrayList<Person>();
+		ArrayList<Person> womenList = new ArrayList<Person>();
+		menList = pf.parseMen();
+		for(Person per : menList)
+			System.out.println(per.getNbr() + " " + per.getName());
+		womenList = pf.parseWomen();
+		for(Person per : womenList)
+			System.out.println(per.getNbr() + " " + per.getName());
 	}
 }
