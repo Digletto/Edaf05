@@ -18,7 +18,7 @@ public class sortingAlgorithm {
 
 	public sortingAlgorithm() {
 
-		//TODO: initialize proposedtomap properly
+		//TODO: initialize proposedtomap properly, also all other maps and whatnot
 		
 		Person m1 = new Person(1, "m");
 		Person m2 = new Person(3, "m'");
@@ -30,7 +30,12 @@ public class sortingAlgorithm {
 		womenList.put(2, w1);
 		womenList.put(4, w2);
 		
+		//initializing proposedtomap to have empty lists
 		proposedToMap = new HashMap<Integer, ArrayList<Integer>>();
+		proposedToMap.put(1, new ArrayList<Integer>());
+		proposedToMap.put(3, new ArrayList<Integer>());
+		
+		pairs = new HashMap<Person, Person>();
 
 	}
 
@@ -38,7 +43,7 @@ public class sortingAlgorithm {
 
 		while (allNotComplete(menList)) {
 
-			Person m = firstFreeMan(menList);
+			Person m = firstFreeMan();
 			Person w = firstWomanToProposeTo(m);
 
 			if (w.getEngagementIndex() == -1) {
@@ -49,6 +54,7 @@ public class sortingAlgorithm {
 			} else {
 				if (w.prefers(m)) {
 					pairs.remove(w);
+					w.setEngagementIndex(m);
 					pairs.put(w, m);
 				}
 			}
@@ -59,6 +65,8 @@ public class sortingAlgorithm {
 
 	}
 
+	
+	//TESTED AND WORKING
 	public Person firstWomanToProposeTo(Person m) {
 
 		ArrayList<Integer> list = m.getPreferenceList();
@@ -66,36 +74,30 @@ public class sortingAlgorithm {
 
 		for (Integer i : list) {
 
-			if (proposedToMap.containsKey(m.getNbr())) {
-
-				if (!proposedToMap.get(m.getNbr()).contains(i)) {
+			//Has this woman not been proposed to by this man
+			if (!proposedToMap.get(m.getNbr()).contains(i)) {
 
 					proposedToMap.get(m.getNbr()).add(new Integer(i));
+					index = i;
 					break;
 
-				}
 
 			}
-			else{
-				//propose, add to list
-				ArrayList<Integer> temp = proposedToMap.get(m.nbr);
-				
-			}
-			
-			index = i;
 
 		}
 
 		return womenList.get(index);
 	}
 
-	private Person firstFreeMan(HashMap<Integer, Person> manList) {
+	//Tested, working
+	private Person firstFreeMan() {
+		
+		Set<Integer> set = menList.keySet();
+		for (Integer i : set) {
+			
+			if (!pairs.containsValue(menList.get(i))) {
 
-		for (int i = 1; i <= manList.size(); i++) {
-
-			if (!pairs.containsValue(manList.get(i))) {
-
-				return manList.get(i);
+				return menList.get(i);
 
 			}
 
@@ -114,16 +116,19 @@ public class sortingAlgorithm {
 
 	public static void main(String[] args) {
 
-		Person m1 = new Person(1, "m");
-		ArrayList<Integer> list = new ArrayList<Integer>();
-		list.add(2);
-		list.add(4);
-		
-
-		m1.setPreferenceList(list);
+//		firstFreeWoman() Test
+//		Person m1 = new Person(1, "m");
+//		ArrayList<Integer> list = new ArrayList<Integer>();
+//		list.add(4);
+//		list.add(2);
+//		
+//
+//		m1.setPreferenceList(list);
 
 		sortingAlgorithm sa = new sortingAlgorithm();
-		System.out.println(sa.firstWomanToProposeTo(m1));
+		Person m = sa.firstFreeMan();
+		System.out.println(m);//put (p,p) in pairs in constructor when testing
+		System.out.println(sa.firstFreeMan());
 
 	}
 
