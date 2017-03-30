@@ -15,6 +15,8 @@ public class sortingAlgorithm {
 	HashMap<Integer, Person> menList = new HashMap<Integer, Person>();
 	HashMap<Integer, Person> womenList = new HashMap<Integer, Person>();
 	Person m1;
+	
+	private int i = 0; // REMOVE PLZ
 
 	public sortingAlgorithm() {
 
@@ -30,6 +32,17 @@ public class sortingAlgorithm {
 		womenList.put(2, w1);
 		womenList.put(4, w2);
 		
+		ArrayList<Integer> tempPrefList = new ArrayList<Integer>();
+		tempPrefList.add(2);
+		tempPrefList.add(4);
+		m1.setPreferenceList(tempPrefList);
+		m2.setPreferenceList(tempPrefList);
+		tempPrefList.clear();
+		tempPrefList.add(1);
+		tempPrefList.add(3);
+		w1.setPreferenceList(tempPrefList);
+		w2.setPreferenceList(tempPrefList);
+		
 		//initializing proposedtomap to have empty lists
 		proposedToMap = new HashMap<Integer, ArrayList<Integer>>();
 		proposedToMap.put(1, new ArrayList<Integer>());
@@ -39,13 +52,15 @@ public class sortingAlgorithm {
 
 	}
 
-	public HashMap<Person, Person> sort(HashMap<Integer, Person> menList, HashMap<Integer, Person> womenList) {
+	public HashMap<Person, Person> sort() {
 
-		while (allNotComplete(menList)) {
+		while (!allComplete()) {
 
 			Person m = firstFreeMan();
 			Person w = firstWomanToProposeTo(m);
-
+			
+			System.out.println("Has run " +  ++i + " times");
+			
 			if (w.getEngagementIndex() == -1) {
 
 				w.setEngagementIndex(m);
@@ -70,7 +85,7 @@ public class sortingAlgorithm {
 	public Person firstWomanToProposeTo(Person m) {
 
 		ArrayList<Integer> list = m.getPreferenceList();
-		int index = -1;
+		int number = -1;
 
 		for (Integer i : list) {
 
@@ -78,7 +93,7 @@ public class sortingAlgorithm {
 			if (!proposedToMap.get(m.getNbr()).contains(i)) {
 
 					proposedToMap.get(m.getNbr()).add(new Integer(i));
-					index = i;
+					number = i;
 					break;
 
 
@@ -86,7 +101,7 @@ public class sortingAlgorithm {
 
 		}
 
-		return womenList.get(index);
+		return womenList.get(number);
 	}
 
 	//Tested, working
@@ -106,12 +121,9 @@ public class sortingAlgorithm {
 		return null;
 	}
 
-	private boolean allNotComplete(HashMap<Integer, Person> menList) {
+	private boolean allComplete() {
 
-		if (pairs.size() == menList.size())
-			return true;
-
-		return false;
+		return pairs.size() == menList.size();
 	}
 
 	public static void main(String[] args) {
@@ -125,11 +137,21 @@ public class sortingAlgorithm {
 //
 //		m1.setPreferenceList(list);
 
+//		firstFreeMan() test
+//		sortingAlgorithm sa = new sortingAlgorithm();
+//		Person m = sa.firstFreeMan();
+//		System.out.println(m);//put (p,p) in pairs in constructor when testing
+//		System.out.println(sa.firstFreeMan());
+		
 		sortingAlgorithm sa = new sortingAlgorithm();
-		Person m = sa.firstFreeMan();
-		System.out.println(m);//put (p,p) in pairs in constructor when testing
-		System.out.println(sa.firstFreeMan());
-
+		HashMap<Person,Person> map = sa.sort();
+		Set<Person> set = map.keySet();
+		for(Person p : set){
+			
+			System.out.println(p + "-" + map.get(p));
+			
+		}
+		
 	}
 
 }

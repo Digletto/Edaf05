@@ -13,11 +13,12 @@ public class Person {
 		nbr = i;
 		name = string;
 		engagementIndex = -1;
+		preferenceList = new ArrayList<Integer>();
 	}
 	
 	public void setPreferenceList(ArrayList<Integer> list){
 		
-		this.preferenceList = list;
+		preferenceList.addAll(list);
 		
 	}
 
@@ -36,21 +37,13 @@ public class Person {
 
 	private int getIndex(Person m) {
 		
-		for(int i = 1; i <= preferenceList.size(); i++){
-			
-			if(preferenceList.get(i) == m.getNbr()){
-				
-				return i;
-				
-			}
-			
-		}
+		preferenceList.indexOf(m.getNbr());
 		
 		return -1;
 	}
 
 	public boolean prefers(Person m) {
-		if(getIndex(m) > engagementIndex){
+		if(getIndex(m) < engagementIndex){
 			
 			return true;
 			
