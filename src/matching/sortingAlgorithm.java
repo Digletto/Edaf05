@@ -123,7 +123,26 @@ public class sortingAlgorithm {
 
 	private boolean allComplete() {
 
-		return pairs.size() == menList.size();
+		Set<Integer> set = proposedToMap.keySet();
+		boolean isDone = false;
+		
+		if(set.size() == menList.size()){
+			
+			for(Integer i : set){
+				
+				if(menList.get(i).preferenceList.size() == pairs.size()){
+					
+					isDone = true;
+					break;
+					
+				}
+				
+			}
+			
+		}
+		
+		return isDone;
+		
 	}
 
 	public static void main(String[] args) {

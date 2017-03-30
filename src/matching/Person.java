@@ -37,9 +37,7 @@ public class Person {
 
 	private int getIndex(Person m) {
 		
-		preferenceList.indexOf(m.getNbr());
-		
-		return -1;
+		return preferenceList.indexOf(m.getNbr());
 	}
 
 	public boolean prefers(Person m) {
