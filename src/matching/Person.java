@@ -12,6 +12,7 @@ public class Person {
 	public Person(int i, String string) {
 		nbr = i;
 		name = string;
+		engagementIndex = -1;
 	}
 	
 	public void setPreferenceList(ArrayList<Integer> list){
@@ -65,6 +66,21 @@ public class Person {
 
 	public int getNbr() {
 		return nbr;
+	}
+	
+	@Override
+	public boolean equals(Object o){
+		
+		Person temp = (Person)o;
+		return temp.getNbr() == nbr;
+		
+	}
+	
+	@Override
+	public String toString(){
+		
+		return name;
+		
 	}
 	
 }
