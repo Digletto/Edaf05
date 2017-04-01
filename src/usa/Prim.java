@@ -18,20 +18,27 @@ public class Prim {
 
 	private static Path run(ArrayList<City> cities, ArrayList<Road> roads) {
 		// associates each city(node) with the number C of the length(cost) of
-		// the shortest (cheapest) road (edge) to the city and the actual road that gives the cheapest road. 
+		// the shortest (cheapest) road (edge) to the city and the actual road
+		// that gives the cheapest road.
 		CityList cityList = new CityList(cities, roads);
-		
-		//Initialize empty tree/forest/list
-		Path minPath = new Path();
-		
-		City tempCity = new City();
-		while(!cityList.isEmpty()){
-			tempCity = cityList.popCheapest();
-			
-		}
-		
-		
-		return null;
-	}
 
+		// Initialize empty tree/forest/list
+		Path minPath = new Path();
+
+		City tempCity = new City();
+		City adjecentCity = new City();
+		while (!cityList.isEmpty()) {
+			tempCity = cityList.popCheapest();
+			minPath.add(tempCity);
+			if (tempCity.cheapestRoad() != null)
+				minPath.add(tempCity.cheapestRoad());
+			for (Road r : tempCity.roads()) {
+				adjecentCity = r.other(tempCity);
+				// shortest distance = wheight
+				if (cityList.contains(adjecentCity) && r.length() < adjecentCity.shortestDistance())
+					adjecentCity.changeCheapestRoad(r);
+			}
+		}
+		return minPath;
+	}
 }

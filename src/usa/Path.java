@@ -7,4 +7,14 @@ public class Path {
 		
 	}
 
+	public void add(City tempCity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void add(Road cheapestRoad) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

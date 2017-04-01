@@ -24,4 +24,9 @@ public class CityList {
 		return null;
 	}
 
+	public boolean contains(City adjecentCity) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
