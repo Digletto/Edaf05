@@ -19,7 +19,7 @@ public class sortingAlgorithm {
 
 	public sortingAlgorithm(HashMap<Integer, Person> menList, HashMap<Integer, Person> womenList) {
 
-		// TODO: initialize proposedtomap properly, also all other maps and
+		// initialize proposedtomap properly, also all other maps and
 		// whatnot
 
 		// Person m1 = new Person(1, "m");
@@ -159,7 +159,7 @@ public class sortingAlgorithm {
 	}
 
 	public static void main(String[] args) {
-		ParseFile pf = new ParseFile("tests/sm-random-500-in.txt");
+		ParseFile pf = new ParseFile("tests/sm-random-50-in.txt"); //TODO: args[0]
 		HashMap<Integer, Person> men = CreateMen(pf);
 		HashMap<Integer, Person> women = CreateWomen(pf);
 

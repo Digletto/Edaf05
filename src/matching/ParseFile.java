@@ -117,7 +117,7 @@ public class ParseFile {
 
 	private ArrayList<Integer> parsePref(String nxtLine) {
 		ArrayList<Integer> prefs = new ArrayList<Integer>();
-		String subLine = nxtLine.substring(3);
+		String subLine = nxtLine.substring(nxtLine.indexOf(':')+2);
 		for(String s : subLine.split(" ")){
 			prefs.add(Integer.parseInt(s));
 		}
