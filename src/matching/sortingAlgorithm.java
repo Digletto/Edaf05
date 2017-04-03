@@ -54,7 +54,6 @@ public class sortingAlgorithm {
 		this.menList = menList;
 		this.womenList = womenList;
 		initializeProposedToList();
-
 	}
 
 	private void initializeProposedToList() {
@@ -160,7 +159,7 @@ public class sortingAlgorithm {
 	}
 
 	public static void main(String[] args) {
-		ParseFile pf = new ParseFile(args[0]);
+		ParseFile pf = new ParseFile("tests/sm-random-500-in.txt");
 		HashMap<Integer, Person> men = CreateMen(pf);
 		HashMap<Integer, Person> women = CreateWomen(pf);
 

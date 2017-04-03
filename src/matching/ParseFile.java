@@ -17,6 +17,8 @@ public class ParseFile {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		s.nextLine();
+		s.nextLine();
 	}
 	
 	public void restart(){
@@ -25,6 +27,8 @@ public class ParseFile {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		s.nextLine();
+		s.nextLine();
 	}
 	
 	public ArrayList<Person> parseMen() {
@@ -59,6 +63,11 @@ public class ParseFile {
 		return persons;
 	}
 	
+	private void skip() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	private ArrayList<Person> createWomenList(int nbrOfP) {
 		return createPersonList(1, nbrOfP);
 	}
