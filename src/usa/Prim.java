@@ -25,8 +25,12 @@ public class Prim {
 		// Initialize empty tree/forest/list
 		Path minPath = new Path();
 
-		City tempCity = new City();
-		City adjecentCity = new City();
+//		temp fix, maybe wont work
+//		City tempCity = new City();
+//		City adjecentCity = new City();
+		
+		City tempCity;
+		City adjecentCity;
 		while (!cityList.isEmpty()) {
 			tempCity = cityList.popCheapest();
 			minPath.add(tempCity);
@@ -34,7 +38,7 @@ public class Prim {
 				minPath.add(tempCity.cheapestRoad());
 			for (Road r : tempCity.roads()) {
 				adjecentCity = r.other(tempCity);
-				// shortest distance = wheight
+				// shortest distance = weight
 				if (cityList.contains(adjecentCity) && r.length() < adjecentCity.shortestDistance())
 					adjecentCity.changeCheapestRoad(r);
 			}

@@ -51,12 +51,15 @@ public class Person {
 	}
 
 	public ArrayList<Integer> getPreferenceList() {
-		// TODO Auto-generated method stub
 		return preferenceList;
 	}
 
 	public int getNbr() {
 		return nbr;
+	}
+
+	public String getName() {
+		return name;
 	}
 	
 	@Override
