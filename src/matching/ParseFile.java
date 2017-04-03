@@ -114,4 +114,9 @@ public class ParseFile {
 		}
 		return prefs;
 	}
+
+	public void setPreferences(ArrayList<Person> persons) {
+		for(Person p: persons)
+			p.setPreferenceList(parsePref(p));
+	}
 }

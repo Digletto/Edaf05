@@ -51,7 +51,6 @@ public class Person {
 	}
 
 	public ArrayList<Integer> getPreferenceList() {
-		// TODO Auto-generated method stub
 		return preferenceList;
 	}
 
