@@ -13,6 +13,9 @@ public class CityParser {
 	private ArrayList<Road> roads;
 	private ArrayList<City> cities;
 	private Scanner scan;
+	
+	//change when needed
+	private int nbrOfCities = 128;
 
 	public CityParser(File file) {
 
@@ -22,6 +25,8 @@ public class CityParser {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		citiesMap = new HashMap<City, ArrayList<City>>();
 
 		scan();
 	}
@@ -39,7 +44,7 @@ public class CityParser {
 
 		String cityName;
 
-		while (cities.size() <= 128) {
+		while (cities.size() <= nbrOfCities) {
 
 			cityName = scan.nextLine();
 			cities.add(new City(cityName));
@@ -54,20 +59,37 @@ public class CityParser {
 		String cityName;
 		int distance;
 		
-		while (cities.size() <= 128) {
+		while (scan.hasNextLine()) {
 
-			line = scan.nextLine();
+			//add to map
+			addCityDistances();
 			
-			//read first part
-			cityName = line.split("--")[0];
-			
-			//read second part
-			distance = Integer.parseInt(line.split("[")[1]);
-			
-			//FIX REST
 
 		}
 
+	}
+
+	//add city to map, sorted by distance
+	private void addCityDistances() {
+		
+		HashMap<City, Integer> distances = new HashMap<City, Integer>();
+		
+		for(int i = 0; i < nbrOfCities; i++){
+			
+			String line = scan.nextLine();
+			ArrayList<City> list = citiesMap.get(line.split("--")[0]);
+			int distance = Integer.parseInt(line.split("[")[1]);
+			int a = 0;
+			
+			while(distances.get(list.get(a)) > distance){
+				
+				a++;
+				
+			}
+			// FINISH LIST PLZ
+			
+		}
+		
 	}
 
 	public ArrayList<City> cities() {
