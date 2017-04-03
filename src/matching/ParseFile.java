@@ -36,7 +36,7 @@ public class ParseFile {
 	}
 	
 	/**
-	 * i = 1 for men, i = 2 for women
+	 * i = 0 for men, i = 1 for women
 	 * 
 	 */
 	private ArrayList<Person> parsePersons(int i) {
