@@ -47,8 +47,9 @@ public class ParseFile {
 		while(s.hasNextLine()) {
 			nxtLine = s.nextLine();
 			if(nxtLine.contains("=")){
-				System.out.println("found it");
+//				System.out.println("found it");
 				nbrOfP = Integer.parseInt(nxtLine.substring(2));
+//				System.out.println(""+nbrOfP);
 				if(i==0)
 					persons = createMenList(nbrOfP);
 				else
@@ -69,8 +70,10 @@ public class ParseFile {
 	private ArrayList<Person> createPersonList(int i, int nbrOfP) {
 		String nxtLine;
 		ArrayList<Person> prsnList = new ArrayList<Person>();
-		for (int m=0; m < nbrOfP; m++) {
+		for (int m=0; m < nbrOfP*2; m++) {
 			nxtLine = s.nextLine();
+//			System.out.println(nxtLine);
+//			System.out.println((m+i)+"");
 			if((m+i)%2 == 0) {
 				prsnList.add(createPerson(nxtLine));
 			}
