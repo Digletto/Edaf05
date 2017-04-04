@@ -1,0 +1,33 @@
+\documentclass{tufte-handout}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage{mathpazo}
+\usepackage{booktabs}
+\usepackage{microtype}
+
+\pagestyle{empty}
+
+
+\title{Stable Matching Report}
+\author{Hannes Berntsson & Erman Nurdal}
+
+\begin{document}
+  \maketitle
+
+  \section{Results}
+
+  Our implementation produces the expected results on all input--output file pairs, except {\tt sm-random-500.txt}. Although we do not know why this happens, one theory is that the algorithm produces one stable matching but not necessarily the one specified in the output file.
+
+  }
+
+  \section{Implementation details}
+
+  Both the men's and women's preferences are stored in an ArrayList in the class Person.
+  We can check find a free man who has not proposed to every woman in time $O(n),
+  because each man has an ArrayList mapped to him in a HashMap. This ArrayList contains all the women each man has   proposed to, and can thus be used to determine if any man has any women left to propose to.
+
+  With these data structures, our implementation runs in time $O({n}^2)$  \sidenote{Replace with your actual   running time.}
+  on inputs with $n$ men and $n$ women.
+
+
+\end{document}
