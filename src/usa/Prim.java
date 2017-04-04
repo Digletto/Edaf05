@@ -40,6 +40,7 @@ public class Prim {
 				adjecentCity = r.other(tempCity);
 				// shortest distance = weight
 				//Q: Does contains() refer to the stack or the full list of cities, right now refers to full list
+				//A: supposed to refer to the list we pop from, so the one that should shrink until it's empty
 				if (cityList.contains(adjecentCity) && r.length() < adjecentCity.shortestDistance())
 					adjecentCity.changeCheapestRoad(r);
 			}
