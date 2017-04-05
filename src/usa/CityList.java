@@ -5,7 +5,6 @@ import java.util.Stack;
 
 public class CityList {
 
-	private ArrayList<City> fullCityList;
 	private Stack<City> cityStack;
 	
 	// Associate with each vertex v of the graph a number C[v] (the cheapest
@@ -38,7 +37,7 @@ public class CityList {
 	//Maybe should use stack, not sure
 	public boolean contains(City adjecentCity) {
 		
-		return fullCityList.contains(adjecentCity);
+		return cityStack.contains(adjecentCity);
 	}
 
 }
