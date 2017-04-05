@@ -19,9 +19,7 @@ public class CityList {
 		cityStack = new Stack<City>();
 		
 		for(City c : cities){
-			
 			cityStack.push(c);
-			
 		}
 	}
 
