@@ -98,8 +98,6 @@ public class CityParser {
 					
 				}
 				
-				int j = 0;
-				
 				//find the city in question and put in at index a
 				list.add(a, currentCity);
 				

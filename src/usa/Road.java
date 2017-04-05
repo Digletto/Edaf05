@@ -4,6 +4,7 @@ package usa;
 public class Road {
 
 	private City city1, city2;
+	private int length = 0;
 
 	public Road(City city1, City city2) {
 
@@ -24,10 +25,25 @@ public class Road {
 
 		}
 	}
+	
+	public void setLength(int length){
+		
+		//TODO: change parser to call this method
+		this.length = length;
+		
+	}
 
 	public int length() {
-		// TODO Auto-generated method stub
-		return 0;
+		return length;
+	}
+	
+	@Override 
+	public boolean equals(Object o){
+		
+		Road otherRoad = (Road)o;
+		
+		return (city1.equals(otherRoad.city1) && city2.equals(otherRoad.city2)) || (city2.equals(otherRoad.city1) && city1.equals(otherRoad.city2)); 
+		
 	}
 
 }
