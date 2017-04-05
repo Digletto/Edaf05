@@ -26,7 +26,7 @@ public class CityList {
             {	return Integer.compare(c1.shortestDistance(), c2.shortestDistance());}});
 		
 		for(City c : cities){
-			cityQueue.of
+			cityQueue.
 		}
 	}
 
