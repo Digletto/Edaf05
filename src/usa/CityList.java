@@ -26,7 +26,6 @@ public class CityList {
 	}
 
 	public boolean isEmpty() {
-		
 		return cityStack.size() == 0;
 	}
 
@@ -35,10 +34,8 @@ public class CityList {
 		return cityStack.pop();
 	}
 
-	//Maybe should use stack, not sure
 	public boolean contains(City adjecentCity) {
-		
-		return fullCityList.contains(adjecentCity);
+		return cityStack.contains(adjecentCity);
 	}
 
 }
