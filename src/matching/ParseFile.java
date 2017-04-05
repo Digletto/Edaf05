@@ -62,11 +62,6 @@ public class ParseFile {
 		}
 		return persons;
 	}
-	
-	private void skip() {
-		// TODO Auto-generated method stub
-		
-	}
 
 	private ArrayList<Person> createWomenList(int nbrOfP) {
 		return createPersonList(1, nbrOfP);
@@ -110,6 +105,7 @@ public class ParseFile {
 			nxtLine = s.nextLine();
 			if(nxtLine.contains(nbr + ":")) {
 				prefs = parsePref(nxtLine);
+				break;
 			}
 		}
 		return prefs;

@@ -1,52 +1,88 @@
 package matching;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Person {
 
 	String name;
 	int nbr;
-	int engagementIndex= -1;
+	int engagementIndex = 0;
 	ArrayList<Integer> preferenceList;
+	boolean isEngaged = false;
+	
+	// person.nbr - index
+	HashMap<Integer, Integer> preferenceMap;
 
 	public Person(int i, String string) {
 		nbr = i;
 		name = string;
 		engagementIndex = -1;
 		preferenceList = new ArrayList<Integer>();
+		preferenceMap = new HashMap<Integer, Integer>();
+
+	}
+
+	public void setPreferenceList(ArrayList<Integer> list) {
+
+		preferenceList.addAll(list);
+
+		for (int i : list) {
+
+			preferenceMap.put(i, list.indexOf(i));
+
+		}
+
+	}
+
+	public int getEngagementIndex() {
+
+		return engagementIndex;
+
 	}
 	
-	public void setPreferenceList(ArrayList<Integer> list){
+	public void setEngagementStatus(boolean status){
 		
-		preferenceList.addAll(list);
-		
-	}
-
-	public int getEngagementIndex(){
-		
-		return engagementIndex;
+		this.isEngaged = status;
 		
 	}
 
-	//SET INDEX TO INDEX OF RECIEVED PERSON IN PREFERENCE LIST
+	public boolean isEngaged() {
+
+		return isEngaged;
+
+	}
+
+	// SET INDEX TO INDEX OF RECIEVED PERSON IN PREFERENCE LIST
 	public void setEngagementIndex(Person m) {
-		
+
 		engagementIndex = getIndex(m);
-		
+
 	}
 
-	private int getIndex(Person m) {
-		
-		return preferenceList.indexOf(m.getNbr());
+	public void setEngagementIndex(int i) {
+
+		engagementIndex = i;
+
+	}
+
+	public int incrementEngagementIndex() {
+ 
+		engagementIndex++;
+		return engagementIndex;
+
+	}
+
+	public int getIndex(Person m) {
+
+		return preferenceMap.get(m.nbr);
 	}
 
 	public boolean prefers(Person m) {
-		if(getIndex(m) < engagementIndex){
-			
+		if (preferenceMap.get(m.getNbr()) < engagementIndex) {
 			return true;
-			
 		}
-		
+
 		return false;
 	}
 
@@ -61,20 +97,25 @@ public class Person {
 	public String getName() {
 		return name;
 	}
-	
+
 	@Override
-	public boolean equals(Object o){
-		
-		Person temp = (Person)o;
+	public boolean equals(Object o) {
+
+		Person temp = (Person) o;
 		return temp.getNbr() == nbr;
-		
+
 	}
-	
+
 	@Override
-	public String toString(){
-		
+	public String toString() {
+
 		return name;
-		
+
 	}
-	
+
+	public int getNextWoman() {
+		
+		return preferenceList.get(incrementEngagementIndex());
+	}
+
 }
