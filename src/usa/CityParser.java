@@ -4,41 +4,57 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.PriorityQueue;
 import java.util.Scanner;
+import java.util.Stack;
 
 public class CityParser {
 
 	// Cities with associated list of cities sorted by distance
-	private Scanner scan;
+	private Scanner s;
 	private File file;
 
 	public CityParser(String path) {
 		file = new File(path);
 		try {
-			scan = new Scanner(file);
+			s = new Scanner(file);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public  readCities() {
-		// TODO Auto-generated method stub
-		String cityName;
-		while (cities.size() <= nbrOfCities) {
-			cityName = scan.nextLine();
-			cities.add(new City(cityName));
+	public PriorityQueue<City> readCities() {
+		restart();
+		PriorityQueue<City> cities = new PriorityQueue<City>();
+		
+		String nxtLine = s.nextLine();
+		while (!nxtLine.contains("--")) {
+			cities.add(new City(nxtLine));
+			nxtLine = s.nextLine();
 		}
-
+		
+		readRoads(cities);
+		return cities;
 	}
 
-	private void readRoads() {
-
-		for(City c : cities){
-
-			addCityDistances();
-
+	private void restart() {
+		try {
+			s = new Scanner(file);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
 		}
+	}
 
+	private void readRoads(PriorityQueue<City> cities) {
+		String nxtLine;
+		
+		for(City c:cities){
+			restart();
+			while(!(nxtLine = s.nextLine()).contains(c.getName()));
+			while(nxtLine.contains(c.getName())){
+				//TODO
+			}
+		}
 	}
 
 	// add city to map, sorted by distance

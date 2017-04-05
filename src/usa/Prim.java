@@ -16,11 +16,11 @@ public class Prim {
 		minimalPath.print();
 	}
 
-	private static Path run(ArrayList<City> cities, ArrayList<Road> roads) {
+	private static Path run(ArrayList<City> cities) {
 		// associates each city(node) with the number C of the length(cost) of
 		// the shortest (cheapest) road (edge) to the city and the actual road
 		// that gives the cheapest road.
-		CityList cityList = new CityList(cities, roads);
+		CityList cityList = new CityList(cities);
 
 		// Initialize empty tree/forest/list
 		Path minPath = new Path();
