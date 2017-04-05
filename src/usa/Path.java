@@ -1,20 +1,32 @@
 package usa;
 
+import java.util.ArrayList;
+
 public class Path {
+	
+	ArrayList<City> cities;
+	ArrayList<Road> roads;
 
 	public void print() {
-		// TODO Auto-generated method stub
-		
+		for(Road r:roads){
+			System.out.println("" + r);
+		}
+		System.out.println("length = " + length());
 	}
 
-	public void add(City tempCity) {
-		// TODO Auto-generated method stub
-		
+	public int length() {
+		int length = 0;
+		for(Road r:roads)
+			length = length+r.length();
+		return length;
 	}
 
-	public void add(Road cheapestRoad) {
-		// TODO Auto-generated method stub
-		
+	public void add(City city) {
+		cities.add(city);
+	}
+
+	public void add(Road road) {
+		roads.add(road);
 	}
 
 }

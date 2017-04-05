@@ -18,14 +18,11 @@ public class CityList {
 		cityStack = new Stack<City>();
 		
 		for(City c : cities){
-			
 			cityStack.push(c);
-			
 		}
 	}
 
 	public boolean isEmpty() {
-		
 		return cityStack.size() == 0;
 	}
 
@@ -34,9 +31,7 @@ public class CityList {
 		return cityStack.pop();
 	}
 
-	//Maybe should use stack, not sure
 	public boolean contains(City adjecentCity) {
-		
 		return cityStack.contains(adjecentCity);
 	}
 
