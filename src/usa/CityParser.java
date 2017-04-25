@@ -4,9 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.PriorityQueue;
 import java.util.Scanner;
-import java.util.Stack;
 
 public class CityParser {
 
@@ -32,29 +30,30 @@ public class CityParser {
 
 	public CityList readCities() {
 		restart();
-		CityList cities = new CityList();
+		ArrayList<City> cities = new ArrayList<City>();
+		HashMap<String, City> cityMap = new HashMap<String, City>();
 
 		String nxtLine = s.nextLine();
 		while (!nxtLine.contains("--")) {
 			City city = new City(nxtLine.trim());
 			city.setShortestDist(Integer.MAX_VALUE);
 			cities.add(city);
+			cityMap.put(city.getName(), city);
 			nxtLine = s.nextLine();
 		}
-		return cities;
+		readAllRoads(cityMap, cities);
+		return new CityList(cities);
 	}
 
-	public void readAllRoads(CityList cities) {
-		for (City c : cities.getQueue()) {
+	public void readAllRoads(HashMap<String, City> cityMap, ArrayList<City> cities) {
+		for (City c : cities) {
 			restart();
 			String nxtLine = s.nextLine().trim();
 			while (s.hasNextLine()) {
 				if(nxtLine.contains("--") && nxtLine.contains(c.getName())) {
 					String[] split = nxtLine.split("--");
-					City city1 = new City(split[0].trim());
-					City city2 = new City(split[1].split("\\[")[0].trim());
-					city1.setShortestDist(Integer.MAX_VALUE);
-					city2.setShortestDist(Integer.MAX_VALUE);
+					City city1 = cityMap.get(split[0].trim());
+					City city2 = cityMap.get(split[1].split("\\[")[0].trim());
 					Road road = new Road(city1, city2);
 					road.setLength(Integer.parseInt(split[1].split("\\[")[1].split("\\]")[0]));
 					c.addRoad(road);

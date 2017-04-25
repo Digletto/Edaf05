@@ -1,14 +1,12 @@
 package usa;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class City {// node (or vertex)
 
 	private String name;
-	private City parent;
+	private Road cheapestRoad;
 	private HashMap<City, Road> roads;
 	private int shortestDistance;
 	private ArrayList<City> connections = new ArrayList<City>();
@@ -23,13 +21,7 @@ public class City {// node (or vertex)
 	}
 
 	public Road cheapestRoad() {
-		return roads.get(0);
-	}
-
-	public void setRoadList(ArrayList<City> cities) {
-		for (City c : cities) {
-			roads.put(this, new Road(this, c));
-		}
+		return cheapestRoad;
 	}
 
 	public HashMap<City, Road> roads() {
@@ -50,10 +42,6 @@ public class City {// node (or vertex)
 		shortestDistance = i;
 	}
 
-	public void setParent(City parent) {
-		this.parent = parent;
-	}
-
 	public ArrayList<City> connections() {
 		return connections;
 	}
@@ -68,5 +56,9 @@ public class City {// node (or vertex)
 
 	public void addConnection(City city) {
 		connections.add(city);
+	}
+
+	public void setCheapestRoad(Road r) {
+		cheapestRoad = r;
 	}
 }

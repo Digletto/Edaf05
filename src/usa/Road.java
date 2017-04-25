@@ -12,7 +12,6 @@ public class Road {
 	}
 
 	public City other(City tempCity) {
-
 		if (tempCity.getName().equals(city1.getName())) {
 			return city2;
 		} else {
@@ -30,7 +29,6 @@ public class Road {
 
 	@Override
 	public boolean equals(Object o) {
-
 		Road otherRoad = (Road) o;
 		return (city1.equals(otherRoad.city1) && city2.equals(otherRoad.city2))
 				|| (city2.equals(otherRoad.city1) && city1.equals(otherRoad.city2));

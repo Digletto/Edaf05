@@ -1,18 +1,12 @@
 package usa;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.PriorityQueue;
-import java.util.Stack;
-import java.util.Map.Entry;
-
-import matching.Person;
 
 public class CityList {
 
 	private PriorityQueue<City> cityQueue;
-	private City connection;
 
 	public CityList(ArrayList<City> cities) {
 		cityQueue = new PriorityQueue<City>(new Comparator<City>() {
@@ -50,19 +44,12 @@ public class CityList {
 		cityQueue.add(city);
 	}
 
-	public City connection() {
-		return connection;
-	}
-
-	public void maxOutShortest() {
-	}
-	
-	public PriorityQueue<City> getQueue() {
-		return cityQueue;
-	}
-
 	public City peekCheapest() {
 		return cityQueue.peek();
+	}
+
+	public void remove(City c) {
+		cityQueue.remove(c);
 	}
 
 }

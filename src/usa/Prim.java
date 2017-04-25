@@ -1,16 +1,13 @@
 package usa;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.PriorityQueue;
-
 public class Prim {
 
 	public static void main(String[] args) {
 		CityParser cp = new CityParser("USA-highway-miles.in.txt");
+		
+		//System.out.println("" + Integer.compare(2, 1));
 
 		CityList cities = cp.readCities();
-		cp.readAllRoads(cities);
 
 		Path minimalPath = run(cities);
 		minimalPath.print();
@@ -19,23 +16,26 @@ public class Prim {
 	private static Path run(CityList cityList) {
 
 		Path minPath = new Path();
-		//cityList.maxOutShortest();
-		City temp = cityList.peekCheapest();
+		City temp = cityList.popCheapest();
 		temp.setShortestDist(0);
-		temp.setParent(null);
+		temp.setCheapestRoad(null);
+		cityList.add(temp);
 
 		City currentCity;
 		Road currentRoad;
 
 		while (!cityList.isEmpty()) {
 			currentCity = cityList.popCheapest();
-
+			if(currentCity.cheapestRoad() != null)
+				minPath.add(currentCity.cheapestRoad());
+			
 			for (City c : currentCity.connections()) {
 				currentRoad = currentCity.getRoad(c);
-				if (cityList.contains(c) &&  (currentRoad.length() < c.shortestDistance())) {
-					c.setParent(currentCity);
+				if (cityList.contains(c) && (currentRoad.length() < c.shortestDistance())) {
+					cityList.remove(c);
+					c.setCheapestRoad(currentRoad);
 					c.setShortestDist(currentRoad.length());
-					minPath.add(currentRoad);
+					cityList.add(c);
 				}
 			}
 		}
