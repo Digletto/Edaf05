@@ -2,47 +2,41 @@ package usa;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.PriorityQueue;
 
 public class Prim {
 
 	public static void main(String[] args) {
-		File file = new File(args[0]); // filepath
-		CityParser cp = new CityParser(file);
+		CityParser cp = new CityParser("USA-highway-miles.in.txt");
 
-		ArrayList<City> cities = cp.cities();
-		ArrayList<Road> roads = cp.roads();
+		CityList cities = cp.readCities();
+		cp.readAllRoads(cities);
 
-		Path minimalPath = run(cities, roads);
+		Path minimalPath = run(cities);
 		minimalPath.print();
 	}
 
-	private static Path run(ArrayList<City> cities) {
-		// associates each city(node) with the number C of the length(cost) of
-		// the shortest (cheapest) road (edge) to the city and the actual road
-		// that gives the cheapest road.
-		CityList cityList = new CityList(cities);
+	private static Path run(CityList cityList) {
 
-		// Initialize empty tree/forest/list
 		Path minPath = new Path();
+		//cityList.maxOutShortest();
+		City temp = cityList.peekCheapest();
+		temp.setShortestDist(0);
+		temp.setParent(null);
 
-//		temp fix, maybe wont work
-//		City tempCity = new City();
-//		City adjecentCity = new City();
-		
-		City tempCity;
-		City adjecentCity;
+		City currentCity;
+		Road currentRoad;
+
 		while (!cityList.isEmpty()) {
-			tempCity = cityList.popCheapest();
-			minPath.add(tempCity);
-			if (tempCity.cheapestRoad() != null)
-				minPath.add(tempCity.cheapestRoad());
-			for (Road r : tempCity.roads()) {
-				adjecentCity = r.other(tempCity);
-				// shortest distance = weight
-				//Q: Does contains() refer to the stack or the full list of cities, right now refers to full list
-				//A: supposed to refer to the list we pop from, so the one that should shrink until it's empty
-				if (cityList.contains(adjecentCity) && r.length() < adjecentCity.shortestDistance())
-					adjecentCity.changeCheapestRoad(r);
+			currentCity = cityList.popCheapest();
+
+			for (City c : currentCity.connections()) {
+				currentRoad = currentCity.getRoad(c);
+				if (cityList.contains(c) &&  (currentRoad.length() < c.shortestDistance())) {
+					c.setParent(currentCity);
+					c.setShortestDist(currentRoad.length());
+					minPath.add(currentRoad);
+				}
 			}
 		}
 		return minPath;

@@ -12,22 +12,26 @@ import matching.Person;
 public class CityList {
 
 	private PriorityQueue<City> cityQueue;
+	private City connection;
 
-	// Associate with each vertex v of the graph a number C[v] (the cheapest
-	// cost of a connection to v) and an edge E[v] (the edge providing that
-	// cheapest connection). To initialize these values, set all values of C[v]
-	// to infinity (or to any number larger than the maximum edge weight) and
-	// set each
-	// E[v] to a special flag value indicating that there is no edge connecting
-	// v to earlier vertices.
 	public CityList(ArrayList<City> cities) {
-		cityQueue = new PriorityQueue<City>(new Comparator<City>()
-        {	public int compare(City c1, City c2)
-            {	return Integer.compare(c1.shortestDistance(), c2.shortestDistance());}});
+		cityQueue = new PriorityQueue<City>(new Comparator<City>() {
+			public int compare(City c1, City c2) {
+				return Integer.compare(c1.shortestDistance(), c2.shortestDistance());
+			}
+		});
 		
-		for(City c : cities){
-			cityQueue.
+		for (City c : cities) {
+			cityQueue.add(c);
 		}
+	}
+
+	public CityList() {
+		cityQueue = new PriorityQueue<City>(new Comparator<City>() {
+			public int compare(City c1, City c2) {
+				return Integer.compare(c1.shortestDistance(), c2.shortestDistance());
+			}
+		});
 	}
 
 	public boolean isEmpty() {
@@ -35,12 +39,30 @@ public class CityList {
 	}
 
 	public City popCheapest() {
-
-		return cityQueue.pop();
+		return cityQueue.poll();
 	}
 
 	public boolean contains(City adjecentCity) {
 		return cityQueue.contains(adjecentCity);
+	}
+
+	public void add(City city) {
+		cityQueue.add(city);
+	}
+
+	public City connection() {
+		return connection;
+	}
+
+	public void maxOutShortest() {
+	}
+	
+	public PriorityQueue<City> getQueue() {
+		return cityQueue;
+	}
+
+	public City peekCheapest() {
+		return cityQueue.peek();
 	}
 
 }

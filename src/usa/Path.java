@@ -4,8 +4,7 @@ import java.util.ArrayList;
 
 public class Path {
 	
-	ArrayList<City> cities;
-	ArrayList<Road> roads;
+	ArrayList<Road> roads = new ArrayList<Road>();
 
 	public void print() {
 		for(Road r:roads){
@@ -19,10 +18,6 @@ public class Path {
 		for(Road r:roads)
 			length = length+r.length();
 		return length;
-	}
-
-	public void add(City city) {
-		cities.add(city);
 	}
 
 	public void add(Road road) {
