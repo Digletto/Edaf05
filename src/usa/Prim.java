@@ -5,7 +5,7 @@ import java.util.HashSet;
 public class Prim {
 
 	public static void main(String[] args) {
-		CityParser cp = new CityParser("tinyEWG-alpha.txt");
+		CityParser cp = new CityParser("USA-highway-miles.in");
 		
 		//System.out.println("" + Integer.compare(2, 1));
 
@@ -37,10 +37,9 @@ public class Prim {
 			for (City c : currentCity.connections()) {
 				currentRoad = currentCity.getRoad(c);
 				if (!added.contains(c) && (currentRoad.length() < c.shortestDistance())) {
-					cityList.remove(c);
 					c.setCheapestRoad(currentRoad);
 					c.setShortestDist(currentRoad.length());
-					cityList.add(c);
+					cityList.decreaseKey(c);
 				}
 			}
 		}
