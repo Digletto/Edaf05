@@ -45,8 +45,7 @@ public class CityParser {
 		return new CityList(cities);
 	}
 
-	public void readAllRoads(HashMap<String, City> cityMap) {
-		restart();
+	private void readAllRoads(HashMap<String, City> cityMap) {
 		String nxtLine = s.nextLine().trim();
 		while (s.hasNextLine()) {
 			if(nxtLine.contains("--")) {
