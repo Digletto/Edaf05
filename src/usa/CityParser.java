@@ -41,26 +41,26 @@ public class CityParser {
 			cityMap.put(city.getName(), city);
 			nxtLine = s.nextLine();
 		}
-		readAllRoads(cityMap, cities);
+		readAllRoads(cityMap);
 		return new CityList(cities);
 	}
 
-	public void readAllRoads(HashMap<String, City> cityMap, ArrayList<City> cities) {
-		for (City c : cities) {
-			restart();
-			String nxtLine = s.nextLine().trim();
-			while (s.hasNextLine()) {
-				if(nxtLine.contains("--") && nxtLine.contains(c.getName())) {
-					String[] split = nxtLine.split("--");
-					City city1 = cityMap.get(split[0].trim());
-					City city2 = cityMap.get(split[1].split("\\[")[0].trim());
-					Road road = new Road(city1, city2);
-					road.setLength(Integer.parseInt(split[1].split("\\[")[1].split("\\]")[0]));
-					c.addRoad(road);
-					c.addConnection(road.other(c));
-				}
-				nxtLine = s.nextLine();
+	public void readAllRoads(HashMap<String, City> cityMap) {
+		restart();
+		String nxtLine = s.nextLine().trim();
+		while (s.hasNextLine()) {
+			if(nxtLine.contains("--")) {
+				String[] split = nxtLine.split("--");
+				City city1 = cityMap.get(split[0].trim());
+				City city2 = cityMap.get(split[1].split("\\[")[0].trim());
+				Road road = new Road(city1, city2);
+				road.setLength(Integer.parseInt(split[1].split("\\[")[1].split("\\]")[0]));
+				city1.addRoad(road);
+				city2.addRoad(road);
+				city1.addConnection(city2);
+				city2.addConnection(city1);
 			}
+			nxtLine = s.nextLine();
 		}
 	}
 }
