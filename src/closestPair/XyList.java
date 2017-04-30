@@ -34,7 +34,7 @@ public class XyList {
 		return 0;
 	}
 
-	public Pair smallestDist() {
+	public Pair closestPair() {
 		// TODO Auto-generated method stub
 		return null;
 	}

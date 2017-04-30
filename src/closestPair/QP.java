@@ -11,7 +11,7 @@ public class QP {
 
 	private static Pair run(XyList xy) {
 		if (xy.size() <= 3)
-			return xy.smallestDist();
+			return xy.closestPair();
 
 		XyList left = xy.left();
 		XyList right = xy.right();
