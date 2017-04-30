@@ -12,15 +12,30 @@ public class QP {
 
 	private static Pair run(XyList xy) {
 		
+		if (xy.size() <= 3)
+			return xy.smallestDist();
 		
-		Pair min = new Pair();
-		Pair leftMin = run(xy.left());
-		Pair rightMin = run(xy.right());
-		if(leftMin.dist() < rightMin.dist())
-			min = leftMin;
-		else min = rightMin;
+		XyList left = xy.left();
+		XyList right = xy.right();
 		
+		Pair min = minOf(run(left), run(right));
 		
+		Line line = new Line(left.rightMostX());
+		XyList center = xyCenter(xy, line, min.dist());
+		Pair centerMin = center.next15();
+		
+		if (centerMin.dist() < min.dist())
+			return centerMin;
+		else return min;
+	}
+
+	private static XyList xyCenter(XyList xy, Line line, int dist) {
 		return null;
+	}
+
+	private static Pair minOf(Pair leftMin, Pair rightMin) {
+		if(leftMin.dist() < rightMin.dist())
+			return leftMin;
+		else return  rightMin;
 	}
 }
