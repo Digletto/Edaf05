@@ -2,6 +2,8 @@ package closestPair;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class XyList {
@@ -15,7 +17,10 @@ public class XyList {
 	//Only in first recursive step
 	public XyList(ArrayList<Point2D> list){
 		
-		//TODO: SORT list into xList and yList
+		Collections.sort(list, new xComparator());
+		xList = list;
+		Collections.sort(list, new yComparator());
+		yList = list;
 		
 	}
 	
@@ -57,7 +62,7 @@ public class XyList {
 	}
 
 	public List<Pair> y() { // y ordered list
-		// TODO Auto-generated method stub
+		//TODO:
 		return null;
 	}
 
@@ -67,13 +72,53 @@ public class XyList {
 	}
 
 	public int size() {
-		// TODO Auto-generated method stub
 		return xList.size();
 	}
 
 	public Pair closestPair() {
-		//TODO
-		return null;
+		
+		if(xList.size() == 2){
+			
+			return new Pair(xList.get(0), xList.get(1));
+			
+		}
+		else{
+			
+			Pair min = new Pair(xList.get(0), xList.get(1));
+			
+			for(Point2D p1 : xList){
+				
+				for(Point2D p2 : xList){
+				
+					if((new Pair(p1,p2)).dist() <min.dist())
+						min = new Pair(p1,p2);
+					
+				}
+				
+			}
+			
+			return min;
+			
+		}
+		
+	}
+	
+	class xComparator implements Comparator<Point2D> {
+	    @Override
+	    public int compare(Point2D p1, Point2D p2) {
+	        if (p1.getX() < p2.getX()) return -1;
+	        if (p1.getX() > p2.getX()) return 1;
+	        return 0;
+	    }    
+	}
+	
+	class yComparator implements Comparator<Point2D> {
+	    @Override
+	    public int compare(Point2D p1, Point2D p2) {
+	        if (p1.getY() < p2.getY()) return -1;
+	        if (p1.getY() > p2.getY()) return 1;
+	        return 0;
+	    }    
 	}
 
 }
