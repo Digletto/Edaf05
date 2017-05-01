@@ -25,7 +25,7 @@ public class QP {
 		return minOf(centerMin, min);
 	}
 
-	private static XyList xyCenter(XyList xy, Line line, int dist) {
+	private static XyList xyCenter(XyList xy, Line line, double dist) {
 		return null;
 	}
 

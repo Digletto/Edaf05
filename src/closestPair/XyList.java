@@ -19,7 +19,7 @@ public class XyList {
 		return 0;
 	}
 
-	public List<Pair> y() { //y ordered list
+	public List<Pair> y() { // y ordered list
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -35,7 +35,7 @@ public class XyList {
 	}
 
 	public Pair closestPair() {
-		// TODO Auto-generated method stub
+		//TODO
 		return null;
 	}
 
