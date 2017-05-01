@@ -34,8 +34,8 @@ public class XyList {
 		
 		
 		//Make a new XyList consisting of first half of xList and yList
-		newXLx.addAll(xList.subList(0, xList.size()/2));
-		newXLy.addAll(xList.subList(0, yList.size()/2));
+		newXLx.addAll(xList.subList(0, (xList.size()-1)/2));
+		newXLy.addAll(xList.subList(0, (yList.size()-1)/2));
 		return new XyList(newXLx, newXLy);
 	}
 
@@ -46,15 +46,14 @@ public class XyList {
 		
 		
 		//Make a new XyList consisting of second half of xList and yList
-		newXLx.addAll(xList.subList(xList.size()/2, xList.size()));
-		newXLy.addAll(xList.subList(yList.size()/2, yList.size()));
+		newXLx.addAll(xList.subList((xList.size()-1)/2, xList.size()-1));
+		newXLy.addAll(xList.subList((yList.size()-1)/2, yList.size()-1));
 		return new XyList(newXLx, newXLy);
 		
 	}
 
-	public int rightMostX() {
-		// TODO Auto-generated method stub
-		return 0;
+	public double rightMostX() {
+		return xList.get(xList.size()-1).getX();
 	}
 
 	public List<Pair> y() { // y ordered list
