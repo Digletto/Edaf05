@@ -2,8 +2,12 @@ package closestPair;
 
 public class Line {
 
+	private double rightMostX;
+	
 	public Line(double rightMostX) {
-		// TODO Auto-generated constructor stub
+		
+		this.rightMostX = rightMostX;
+		
 	}
 
 }

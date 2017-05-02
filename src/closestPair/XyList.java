@@ -9,21 +9,21 @@ import java.util.List;
 public class XyList {
 
 	// Points sorted by x
-	private List<Point2D> xList;
+	private List<Node> xList;
 	// Points sorted by y
-	private List<Point2D> yList;
+	private List<Node> yList;
 
 	// Only in first recursive step
-	public XyList(ArrayList<Point2D> list) {
+	public XyList(ArrayList<Node> list) {
 
 		Collections.sort(list, new xComparator());
-		xList = list;
+		xList.addAll(list);
 		Collections.sort(list, new yComparator());
-		yList = list;
+		yList.addAll(list);
 	}
 
 	// Used in remaining recursive steps
-	public XyList(List<Point2D> xList, List<Point2D> yList) {
+	public XyList(List<Node> xList, List<Node> yList) {
 
 		this.xList = xList;
 		this.yList = yList;
@@ -31,8 +31,8 @@ public class XyList {
 
 	public XyList left() {
 
-		List<Point2D> newXLx = new ArrayList<Point2D>();
-		List<Point2D> newXLy = new ArrayList<Point2D>();
+		List<Node> newXLx = new ArrayList<Node>();
+		List<Node> newXLy = new ArrayList<Node>();
 
 		// Make a new XyList consisting of first half of xList and yList
 		newXLx.addAll(xList.subList(0, (xList.size() - 1) / 2));
@@ -42,8 +42,8 @@ public class XyList {
 
 	public XyList right() {
 
-		List<Point2D> newXLx = new ArrayList<Point2D>();
-		List<Point2D> newXLy = new ArrayList<Point2D>();
+		List<Node> newXLx = new ArrayList<Node>();
+		List<Node> newXLy = new ArrayList<Node>();
 
 		// Make a new XyList consisting of second half of xList and yList
 		newXLx.addAll(xList.subList((xList.size() - 1) / 2, xList.size() - 1));
@@ -56,7 +56,7 @@ public class XyList {
 		return xList.get(xList.size() - 1).getX();
 	}
 
-	public List<Point2D> y() { // y ordered list
+	public List<Node> y() { // y ordered list
 		return yList;
 	}
 
@@ -75,8 +75,8 @@ public class XyList {
 			return new Pair(xList.get(0), xList.get(1));
 		} else {
 			Pair min = new Pair(xList.get(0), xList.get(1));
-			for (Point2D p1 : xList) {
-				for (Point2D p2 : xList) {
+			for (Node p1 : xList) {
+				for (Node p2 : xList) {
 					if ((new Pair(p1, p2)).dist() < min.dist())
 						min = new Pair(p1, p2);
 				}
@@ -85,9 +85,9 @@ public class XyList {
 		}
 	}
 
-	class xComparator implements Comparator<Point2D> {
+	class xComparator implements Comparator<Node> {
 		@Override
-		public int compare(Point2D p1, Point2D p2) {
+		public int compare(Node p1, Node p2) {
 			if (p1.getX() < p2.getX())
 				return -1;
 			if (p1.getX() > p2.getX())
@@ -96,9 +96,9 @@ public class XyList {
 		}
 	}
 
-	class yComparator implements Comparator<Point2D> {
+	class yComparator implements Comparator<Node> {
 		@Override
-		public int compare(Point2D p1, Point2D p2) {
+		public int compare(Node p1, Node p2) {
 			if (p1.getY() < p2.getY())
 				return -1;
 			if (p1.getY() > p2.getY())
