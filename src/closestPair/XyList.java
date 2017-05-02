@@ -1,10 +1,8 @@
 package closestPair;
 
-import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.List;
 
 public class XyList {
 
@@ -36,7 +34,8 @@ public class XyList {
 
 		// Make a new XyList consisting of first half of xList and yList
 		newXLx.addAll(xList.subList(0, (xList.size() - 1) / 2));
-		newXLy.addAll(xList.subList(0, (yList.size() - 1) / 2));
+		newXLy.addAll(newXLx);
+		Collections.sort(newXLy, new yComparator());
 		return new XyList(newXLx, newXLy);
 	}
 
@@ -47,9 +46,9 @@ public class XyList {
 
 		// Make a new XyList consisting of second half of xList and yList
 		newXLx.addAll(xList.subList((xList.size() - 1) / 2, xList.size() - 1));
-		newXLy.addAll(xList.subList((yList.size() - 1) / 2, yList.size() - 1));
+		newXLy.addAll(newXLx);
+		Collections.sort(newXLy, new yComparator());
 		return new XyList(newXLx, newXLy);
-
 	}
 
 	public double rightMostX() {
