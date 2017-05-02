@@ -56,7 +56,7 @@ public class XyList {
 		return xList.get(xList.size() - 1).getX();
 	}
 
-	public ArrayList<Point2D> y() { // y ordered list
+	public ArrayList<Node> y() { // y ordered list
 		return yList;
 	}
 

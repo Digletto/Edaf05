@@ -1,8 +1,6 @@
 package closestPair;
 
-import java.awt.geom.Point2D;
 import java.util.ArrayList;
-import java.util.List;
 
 public class QP {
 
@@ -22,25 +20,40 @@ public class QP {
 
 		Pair min = minOf(run(left), run(right));
 
-		Line line = new Line(left.rightMostX());
-		ArrayList<Point2D> center = xyCenter(xy, line, min.dist());
+		// Line line = new Line(left.rightMostX());
+		ArrayList<Node> center = xyCenter(xy, left.rightMostX(), min.dist());
 		Pair centerMin = next15(center);
 
 		return minOf(centerMin, min);
 	}
 
-	private static ArrayList<Point2D> xyCenter(XyList xy, Line line, double dist) { //TODO
-		ArrayList<Point2D> center = new ArrayList<Point2D>();
-		ArrayList<Point2D> yList = xy.y();
+	private static ArrayList<Node> xyCenter(XyList xy, double line, double dist) {
+		ArrayList<Node> center = new ArrayList<Node>();
+		ArrayList<Node> yList = xy.y();
+		Node temp = new Node(0, 0);
+
 		for (int i = 0; i < yList.size(); i++) {
-			center.add(yList.get(i));
+			temp = yList.get(i);
+			if (temp.getX() > (line - dist) && temp.getX() < (line + dist))
+				center.add(temp);
 		}
-		return null;
+		return center;
 	}
-	
-	private static Pair next15(ArrayList<Point2D> center) {
-		// TODO Auto-generated method stub
-		return null;
+
+	private static Pair next15(ArrayList<Node> center) {
+		Double dist = Double.MAX_VALUE;
+		Pair min = null;
+
+		for (int i = 0; i < center.size(); i++) {
+			Node temp = center.get(i);
+			for (int j = 1; j < 16; j++) {
+				if (temp.distanceTo(center.get(i+j)) < dist) {
+					min = new Pair(temp, center.get(i+j));
+					dist = min.dist();
+				}
+			}
+		}
+		return min;
 	}
 
 	private static Pair minOf(Pair a, Pair b) {
