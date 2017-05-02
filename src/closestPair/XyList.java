@@ -9,9 +9,9 @@ import java.util.List;
 public class XyList {
 
 	// Points sorted by x
-	private List<Node> xList;
+	private ArrayList<Node> xList;
 	// Points sorted by y
-	private List<Node> yList;
+	private ArrayList<Node> yList;
 
 	// Only in first recursive step
 	public XyList(ArrayList<Node> list) {
@@ -23,7 +23,7 @@ public class XyList {
 	}
 
 	// Used in remaining recursive steps
-	public XyList(List<Node> xList, List<Node> yList) {
+	public XyList(ArrayList<Node> xList, ArrayList<Node> yList) {
 
 		this.xList = xList;
 		this.yList = yList;
@@ -31,8 +31,8 @@ public class XyList {
 
 	public XyList left() {
 
-		List<Node> newXLx = new ArrayList<Node>();
-		List<Node> newXLy = new ArrayList<Node>();
+		ArrayList<Node> newXLx = new ArrayList<Node>();
+		ArrayList<Node> newXLy = new ArrayList<Node>();
 
 		// Make a new XyList consisting of first half of xList and yList
 		newXLx.addAll(xList.subList(0, (xList.size() - 1) / 2));
@@ -42,8 +42,8 @@ public class XyList {
 
 	public XyList right() {
 
-		List<Node> newXLx = new ArrayList<Node>();
-		List<Node> newXLy = new ArrayList<Node>();
+		ArrayList<Node> newXLx = new ArrayList<Node>();
+		ArrayList<Node> newXLy = new ArrayList<Node>();
 
 		// Make a new XyList consisting of second half of xList and yList
 		newXLx.addAll(xList.subList((xList.size() - 1) / 2, xList.size() - 1));
