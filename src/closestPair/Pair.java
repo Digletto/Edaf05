@@ -3,15 +3,15 @@ import java.awt.geom.Point2D;
 
 public class Pair {
 
-	private Point2D a;
-	private Point2D b;
+	private Node a;
+	private Node b;
 	
-	public Pair(Point2D a, Point2D b){
+	public Pair(Node a, Node b){
 		this.a = a;
 		this.b = b;
 	}
 	
 	public double dist() {
-		return a.distance(b);	}
+		return a.distanceTo(b);	}
 
 }
