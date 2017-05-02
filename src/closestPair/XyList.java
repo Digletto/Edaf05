@@ -74,12 +74,10 @@ public class XyList {
 			return new Pair(xList.get(0), xList.get(1));
 		} else {
 			Pair min = new Pair(xList.get(0), xList.get(1));
-			for (Node p1 : xList) {
-				for (Node p2 : xList) {
-					if ((new Pair(p1, p2)).dist() < min.dist())
-						min = new Pair(p1, p2);
-				}
-			}
+			if (xList.get(0).distanceTo(xList.get(2)) < min.dist())
+				min = new Pair(xList.get(0), xList.get(2));
+			if (xList.get(1).distanceTo(xList.get(2)) < min.dist())
+				min = new Pair(xList.get(1), xList.get(2));
 			return min;
 		}
 	}

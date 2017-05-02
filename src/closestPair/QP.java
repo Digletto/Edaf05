@@ -9,10 +9,12 @@ public class QP {
 		//XyList xy = pp.parse();
 		
 		ArrayList<Node> temp = new ArrayList<Node>();
-		temp.add(new Node(-2,0));
-		temp.add(new Node(2,1));
-		temp.add(new Node(10,10));
+		temp.add(new Node(25,20));
+		temp.add(new Node(25,25));
+		temp.add(new Node(4,10));
+		temp.add(new Node(2,-10));
 		temp.add(new Node(-10,-10));
+		temp.add(new Node(-42,3));
 		
 		XyList xy = new XyList(temp);
 		Pair result = run(xy);
@@ -49,16 +51,16 @@ public class QP {
 	}
 
 	private static Pair next15(ArrayList<Node> center) {
-		Double dist = Double.MAX_VALUE;
-		Pair min = null;
+		//Double dist = Double.MAX_VALUE;
+		Pair min = new Pair(new Node(Double.MAX_VALUE, Double.MAX_VALUE), new Node(Double.MIN_VALUE, Double.MIN_VALUE));
 
 		for (int i = 0; i < center.size(); i++) {
 			Node temp = center.get(i);
 			for (int j = 1; j < 16; j++) {
 				if ((i+j+1) >= center.size()) break;
-				if (temp.distanceTo(center.get(i+j)) < dist) {
+				if (temp.distanceTo(center.get(i+j)) < min.dist()) {
 					min = new Pair(temp, center.get(i+j));
-					dist = min.dist();
+					//dist = min.dist();
 				}
 			}
 		}
