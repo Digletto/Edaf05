@@ -14,4 +14,9 @@ public class Pair {
 	public double dist() {
 		return a.distanceTo(b);	}
 
+	@Override
+	public String toString() {
+		return "a = " + a + " b = " + b + " Distance: " + dist();
+	}
+
 }

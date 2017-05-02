@@ -7,9 +7,9 @@ import java.util.Comparator;
 public class XyList {
 
 	// Points sorted by x
-	private ArrayList<Node> xList;
+	private ArrayList<Node> xList = new ArrayList<Node>();
 	// Points sorted by y
-	private ArrayList<Node> yList;
+	private ArrayList<Node> yList = new ArrayList<Node>();
 
 	// Only in first recursive step
 	public XyList(ArrayList<Node> list) {
@@ -33,7 +33,7 @@ public class XyList {
 		ArrayList<Node> newXLy = new ArrayList<Node>();
 
 		// Make a new XyList consisting of first half of xList and yList
-		newXLx.addAll(xList.subList(0, (xList.size() - 1) / 2));
+		newXLx.addAll(xList.subList(0, (xList.size()) / 2));
 		newXLy.addAll(newXLx);
 		Collections.sort(newXLy, new yComparator());
 		return new XyList(newXLx, newXLy);
@@ -45,7 +45,7 @@ public class XyList {
 		ArrayList<Node> newXLy = new ArrayList<Node>();
 
 		// Make a new XyList consisting of second half of xList and yList
-		newXLx.addAll(xList.subList((xList.size() - 1) / 2, xList.size() - 1));
+		newXLx.addAll(xList.subList((xList.size()) / 2, xList.size()));
 		newXLy.addAll(newXLx);
 		Collections.sort(newXLy, new yComparator());
 		return new XyList(newXLx, newXLy);

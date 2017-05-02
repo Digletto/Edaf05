@@ -28,5 +28,10 @@ public class Node {
 		return Math.abs(Math.hypot(x - other.getX(), y - other.getY()));
 		
 	}
+	
+	@Override
+	public String toString() {
+		return "(" + x + ";" + y + ")";
+	}
 
 }

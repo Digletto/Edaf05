@@ -5,10 +5,18 @@ import java.util.ArrayList;
 public class QP {
 
 	public static void main(String[] args) {
-		PointParser pp = new PointParser("tests/closest/close-pairs-5-in.txt");
-		XyList xy = pp.parse();
-
-		run(xy);
+		//PointParser pp = new PointParser("tests/closest/close-pairs-5-in.txt");
+		//XyList xy = pp.parse();
+		
+		ArrayList<Node> temp = new ArrayList<Node>();
+		temp.add(new Node(-2,0));
+		temp.add(new Node(2,1));
+		temp.add(new Node(10,10));
+		temp.add(new Node(-10,-10));
+		
+		XyList xy = new XyList(temp);
+		Pair result = run(xy);
+		System.out.println(result.toString());
 	}
 
 	private static Pair run(XyList xy) {
@@ -47,6 +55,7 @@ public class QP {
 		for (int i = 0; i < center.size(); i++) {
 			Node temp = center.get(i);
 			for (int j = 1; j < 16; j++) {
+				if ((i+j+1) >= center.size()) break;
 				if (temp.distanceTo(center.get(i+j)) < dist) {
 					min = new Pair(temp, center.get(i+j));
 					dist = min.dist();
