@@ -27,11 +27,17 @@ public class QP {
 		return minOf(centerMin, min);
 	}
 
+<<<<<<< HEAD
 	private static ArrayList<Node> xyCenter(XyList xy, double line, double dist) {
 		ArrayList<Node> center = new ArrayList<Node>();
 		ArrayList<Node> yList = xy.y();
 		Node temp = new Node(0, 0);
 
+=======
+	private static ArrayList<Point2D> xyCenter(XyList xy, Line line, double dist) { //TODO
+		ArrayList<Node> center = new ArrayList<Node>();
+		ArrayList<Node> yList = xy.y();
+>>>>>>> branch 'master' of https://github.com/Digletto/Edaf05.git
 		for (int i = 0; i < yList.size(); i++) {
 			temp = yList.get(i);
 			if (temp.getX() > (line - dist) && temp.getX() < (line + dist))
