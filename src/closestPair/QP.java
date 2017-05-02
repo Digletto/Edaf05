@@ -30,8 +30,8 @@ public class QP {
 	}
 
 	private static ArrayList<Point2D> xyCenter(XyList xy, Line line, double dist) { //TODO
-		ArrayList<Point2D> center = new ArrayList<Point2D>();
-		ArrayList<Point2D> yList = xy.y();
+		ArrayList<Node> center = new ArrayList<Node>();
+		ArrayList<Node> yList = xy.y();
 		for (int i = 0; i < yList.size(); i++) {
 			center.add(yList.get(i));
 		}

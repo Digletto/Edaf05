@@ -33,8 +33,15 @@ public class PointParser {
 	public XyList parse() {
 		restart();
 		ArrayList<Node> points = new ArrayList<Node>();
+		String nxtLine; 
+		
+		do{
+			
+			nxtLine = s.nextLine();
+			
+		}while(!nxtLine.contains("NODE_COORD_SECTION")); 
 
-		String nxtLine = s.nextLine().trim();
+		nxtLine = s.nextLine().trim();
 		String[] splitLine = nxtLine.split(" ");
 		while (!nxtLine.contains("EOF")) {
 			Node p = new Node(Double.parseDouble(splitLine[1]), Double.parseDouble(splitLine[2]));
