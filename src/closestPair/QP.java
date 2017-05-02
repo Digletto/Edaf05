@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class QP {
 
 	public static void main(String[] args) {
-		PointParser pp = new PointParser("test.txt");
+		PointParser pp = new PointParser("tests/closest/close-pairs-5-in.txt");
 		XyList xy = pp.parse();
 
 		run(xy);
