@@ -1,0 +1,8 @@
+for FILE in *-in.txt
+
+do
+	echo $FILE
+	base=${FILE%-in.txt}
+    java -cp ../bin/ matching.sortingAlgorithm $FILE > $base.scripts.out.txt # replace with your command!
+    diff $base.scripts.out.txt $base-out.txt
+done
