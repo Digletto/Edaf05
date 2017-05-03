@@ -1,5 +1,4 @@
 package closestPair;
-import java.awt.geom.Point2D;
 
 public class Pair {
 
@@ -16,7 +15,7 @@ public class Pair {
 
 	@Override
 	public String toString() {
-		return "a = " + a + " b = " + b + " Distance: " + dist();
+		return /*"a = " + a + " b = " + b + " Distance: "*/"" + dist();
 	}
 
 }
