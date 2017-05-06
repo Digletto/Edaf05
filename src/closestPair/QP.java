@@ -5,19 +5,21 @@ import java.util.ArrayList;
 public class QP {
 
 	public static void main(String[] args) {
-		//PointParser pp = new PointParser("tests/closest/close-pairs-5-in.txt");
-		//XyList xy = pp.parse();
+		PointParser pp = new PointParser("tests/closest/burma14-tsp.txt");
+		XyList xy = pp.parse();
 		
-		ArrayList<Node> temp = new ArrayList<Node>();
-		temp.add(new Node(25,20));
-		temp.add(new Node(25,25));
-		temp.add(new Node(4,10));
-		temp.add(new Node(2,-10));
-		temp.add(new Node(-10,-10));
-		temp.add(new Node(-42,3));
+//		ArrayList<Node> temp = new ArrayList<Node>();
+//		temp.add(new Node(25,20));
+//		temp.add(new Node(25,25));
+//		temp.add(new Node(4,10));
+//		temp.add(new Node(2,-10));
+//		temp.add(new Node(-10,-10));
+//		temp.add(new Node(-42,3));
 		
-		XyList xy = new XyList(temp);
-		Pair result = run(xy);
+//		XyList xy = new XyList(temp);
+		Pair result = run(xy);  //as explained (5.10) of Kleinberg and Tardos, \emph{Algorithm Design}, Addison--Wesley 2008.
+
+
 		System.out.println(result.toString());
 	}
 
@@ -57,7 +59,7 @@ public class QP {
 		for (int i = 0; i < center.size(); i++) {
 			Node temp = center.get(i);
 			for (int j = 1; j < 16; j++) {
-				if ((i+j+1) >= center.size()) break;
+				if ((i+j+1) > center.size()) break;
 				if (temp.distanceTo(center.get(i+j)) < min.dist()) {
 					min = new Pair(temp, center.get(i+j));
 					//dist = min.dist();
