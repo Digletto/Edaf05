@@ -40,21 +40,9 @@ public class CostMap {
 //		spaceCost = -4;
 		blosum = new Blosum();
 	}
-
-<<<<<<< HEAD
+	
 	public int getCost(char a, char b) {
 		return blosum.getCost(blosum.char2id.get(Character.toUpperCase(a)), blosum.char2id.get(Character.toUpperCase(b)));
-=======
-	
-	//Change to blosum
-	public HashMap<Character, Integer> get(char c) {
-		return map.get(c);
-	}
-
-	public int getCost(int i, int j) {
-
-		return blosum.getCost(i, j);
->>>>>>> branch 'master' of https://github.com/Digletto/Edaf05.git
 	}
 
 	public void setWordI(char[] wordI) {
