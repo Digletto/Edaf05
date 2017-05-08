@@ -9,7 +9,7 @@ public class SequenceParser {
 	int queryNumber;
 	Scanner scan;
 	HashMap<String, char[]> sequences;
-	HashMap<char[], char[]> queries;
+	HashMap<String, String> queries;
 
 	public SequenceParser() {
 
@@ -56,8 +56,8 @@ public class SequenceParser {
 		for (int i = 0; i < queryNumber; i++) {
 
 			String[] line = scan.nextLine().trim().split(" ");
-			char[] name1 = line[0].toCharArray();
-			char[] name2 = line[1].toCharArray();
+			String name1 = line[0];
+			String name2 = line[1];
 			
 			queries.put(name1, name2);
 
@@ -65,15 +65,22 @@ public class SequenceParser {
 		
 	}
 
-	public HashMap<String, char[]>getsequences() {
+	public char[] getSequence(String name) {
 
-		return sequences;
+		return sequences.get(name);
 
 	}
 
-	public HashMap<char[], char[]> getQueries() {
+	public HashMap<String, String> getQueries() {
 
 		return queries;
+
+	}
+	
+	public String getQuery(String query) {
+
+		//get corresponding sequence
+		return queries.get(query);
 
 	}
 }

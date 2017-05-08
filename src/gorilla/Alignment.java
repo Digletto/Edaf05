@@ -1,13 +1,23 @@
 package gorilla;
 
+import java.util.Set;
+
 public class Alignment {
 
 	public static void main(String args[]) {
-//		SequenceParser sp = new SequenceParser("test.txt");
+		SequenceParser sp = new SequenceParser();
 //		char wordI[] = sp.parseI();
 //		char wordJ[] = sp.parseJ();
 //
 //		run(wordI, wordJ);
+		
+		Set<String> queries = sp.getQueries().keySet();
+		
+		for(String s : queries){
+			
+			run(sp.getSequence(s), sp.getSequence(sp.getQuery(s)));
+			
+		}
 	}
 
 	private static void run(char[] wordI, char[] wordJ) {
