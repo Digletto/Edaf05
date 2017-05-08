@@ -3,11 +3,11 @@ package gorilla;
 public class Alignment {
 
 	public static void main(String args[]) {
-		SequenceParser sp = new SequenceParser("test.txt");
-		char wordI[] = sp.parseI();
-		char wordJ[] = sp.parseJ();
-
-		run(wordI, wordJ);
+//		SequenceParser sp = new SequenceParser("test.txt");
+//		char wordI[] = sp.parseI();
+//		char wordJ[] = sp.parseJ();
+//
+//		run(wordI, wordJ);
 	}
 
 	private static void run(char[] wordI, char[] wordJ) {
