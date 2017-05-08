@@ -23,16 +23,14 @@ public class Alignment {
 				opt(i, j, cm, map);
 			}
 		}
-		System.out.println(map[1][1] + "");
+		System.out.println(map[4][4] + "");
 	}
 
 	private static int opt(int i, int j, CostMap cm, int[][] map) {
-		if(i == cm.wordI.length || j == cm.wordJ.length)
-			return 0;
-		if(map[i][j] != Integer.MIN_VALUE)
+		if (map[i][j] != Integer.MIN_VALUE)
 			return map[i][j];
-		int result =  max(cm.getCost(i, j) + opt(i + 1, j + 1, cm, map), cm.spaceCost + 
-				opt(i + 1, j, cm, map), cm.spaceCost + opt(i, j + 1, cm, map));
+		int result = max(cm.getCost(i, j) + opt(i - 1, j - 1, cm, map), cm.spaceCost + opt(i - 1, j, cm, map),
+				cm.spaceCost + opt(i, j - 1, cm, map));
 		map[i][j] = result;
 		return result;
 	}
@@ -46,9 +44,11 @@ public class Alignment {
 		for (int i = 0; i < map[0].length; i++) {
 			map[0][i] = i * cm.spaceCost;
 		}
+
 		for (int j = 0; j < map.length; j++) {
 			map[j][0] = j * cm.spaceCost;
 		}
+
 		for (int i = 1; i < map[0].length; i++) {
 			for (int j = 1; j < map.length; j++) {
 				map[i][j] = Integer.MIN_VALUE;
