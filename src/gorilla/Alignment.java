@@ -20,10 +20,14 @@ public class Alignment {
 
 		for (int j = 1; j < wordJ.length; j++) {
 			for (int i = 1; i < wordI.length; i++) {
-				opt(i, j, cm, map);
+				opt(i, j, cm, map); // opt(wordI.length-1, wordJ.length-1, cm,
+									// map) utan for loops?
 			}
 		}
-		System.out.println(map[4][4] + "");
+		System.out.println(map[wordI.length - 1][wordJ.length - 1] + "");
+		String aStrings[] = alignmentStrings(cm, map);
+		System.out.println(aStrings[0]);
+		System.out.println(aStrings[1]);
 	}
 
 	private static int opt(int i, int j, CostMap cm, int[][] map) {
@@ -38,6 +42,10 @@ public class Alignment {
 	private static int max(int diag, int right, int down) {
 		int temp = Math.max(diag, right);
 		return Math.max(temp, down);
+	}
+
+	private static String[] alignmentStrings(CostMap cm, int[][] map) {
+		return null;
 	}
 
 	private static void init(int[][] map, CostMap cm) {

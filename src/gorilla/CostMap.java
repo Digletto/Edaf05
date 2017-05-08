@@ -3,12 +3,12 @@ package gorilla;
 import java.util.HashMap;
 
 public class CostMap {
-	
+
 	HashMap<Character, HashMap<Character, Integer>> map = new HashMap<Character, HashMap<Character, Integer>>();
-	public int spaceCost = 0; 
+	public int spaceCost = 0;
 	public char wordI[];
 	public char wordJ[];
-	
+
 	public CostMap() {
 		HashMap<Character, Integer> a = new HashMap<Character, Integer>();
 		HashMap<Character, Integer> e = new HashMap<Character, Integer>();
@@ -34,7 +34,7 @@ public class CostMap {
 		n.put('a', -2);
 		n.put('e', 0);
 		n.put('m', -2);
-		
+
 		map.put('a', a);
 		map.put('e', e);
 		map.put('m', m);
@@ -45,8 +45,9 @@ public class CostMap {
 	public HashMap<Character, Integer> get(char c) {
 		return map.get(c);
 	}
-	
+
 	public int getCost(int i, int j) {
+
 		return map.get(wordI[i]).get(wordJ[j]);
 	}
 
