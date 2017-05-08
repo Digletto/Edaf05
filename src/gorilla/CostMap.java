@@ -1,14 +1,11 @@
 package gorilla;
 
-import java.util.HashMap;
-
 public class CostMap {
 
-	HashMap<Character, HashMap<Character, Integer>> map = new HashMap<Character, HashMap<Character, Integer>>();
-	public int spaceCost = 0;
+	public int spaceCost = -4;
 	public char wordI[];
 	public char wordJ[];
-	Blosum blosum;
+	public Blosum blosum;
 
 	public CostMap() {
 //		HashMap<Character, Integer> a = new HashMap<Character, Integer>();
@@ -42,16 +39,10 @@ public class CostMap {
 //		map.put('n', n);
 //		spaceCost = -4;
 		blosum = new Blosum();
-		
 	}
 
-	public HashMap<Character, Integer> get(char c) {
-		return map.get(c);
-	}
-
-	public int getCost(int i, int j) {
-
-		return blosum.getCost(i, j);
+	public int getCost(char a, char b) {
+		return blosum.getCost(blosum.char2id.get(Character.toUpperCase(a)), blosum.char2id.get(Character.toUpperCase(b)));
 	}
 
 	public void setWordI(char[] wordI) {
@@ -61,5 +52,4 @@ public class CostMap {
 	public void setWordJ(char[] wordJ) {
 		this.wordJ = wordJ;
 	}
-
 }

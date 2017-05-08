@@ -40,9 +40,6 @@ public class Blosum {
 	}
 
 	public int getCost(int i, int j) {
-
 		return blosum[i][j];
-		
 	}
-
 }
