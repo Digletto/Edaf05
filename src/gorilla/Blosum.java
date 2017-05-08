@@ -38,6 +38,12 @@ public class Blosum {
 			char2id.put(ALPHABET[i], i);
 
 	}
+	
+	public int getCost(char c1, char c2){
+		
+		return blosum[char2id.get(c1)][char2id.get(c2)];
+		
+	}
 
 	public int getCost(int i, int j) {
 

@@ -45,6 +45,8 @@ public class CostMap {
 		
 	}
 
+	
+	//Change to blosum
 	public HashMap<Character, Integer> get(char c) {
 		return map.get(c);
 	}
