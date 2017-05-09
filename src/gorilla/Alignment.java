@@ -1,19 +1,21 @@
 package gorilla;
 
+import java.util.Set;
+
 public class Alignment {
 
 	public static void main(String args[]) {
 		SequenceParser sp = new SequenceParser();
-		char wordI[] = sp.parseI();
-		char wordJ[] = sp.parseJ();
-		
-		run(wordI, wordJ);
+//		char wordI[] = sp.parseI();
+//		char wordJ[] = sp.parseJ();
+//		
+//		run(wordI, wordJ);
 
-//		Set<String> queries = sp.getQueries().keySet();
-//
-//		for (String s : queries) {
-//			run(sp.getSequence(s), sp.getSequence(sp.getQuery(s)));
-//		}
+		Set<String> queries = sp.getQueries().keySet();
+
+		for (String s : queries) {
+			run(sp.getSequence(s), sp.getSequence(sp.getQuery(s)));
+		}
 	}
 
 	private static void run(char[] wordI, char[] wordJ) {
@@ -30,7 +32,7 @@ public class Alignment {
 									// map) utan for loops?
 			}
 		}
-		System.out.println(map[wordI.length - 1][wordJ.length - 1] + "");
+		//System.out.println(map[wordI.length - 1][wordJ.length - 1] + "");
 		String aStrings[] = alignmentStrings(cm, map);
 		System.out.println(aStrings[0]);
 		System.out.println(aStrings[1]);

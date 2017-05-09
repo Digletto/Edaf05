@@ -1,5 +1,7 @@
 package gorilla;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -9,16 +11,16 @@ public class SequenceParser {
 	int queryNumber;
 	Scanner scan;
 	HashMap<String, char[]> sequences;
-	HashMap<String, String> queries;
+	HashMap<String, String> queries = new HashMap<String, String>();
 
 	public SequenceParser() {
-//		sequences = new HashMap<String, char[]>();
-//		scan = new Scanner(System.in);
-//		String[] ns = scan.nextLine().trim().split(" ");
-//		organismNumber = Integer.parseInt(ns[0]);
-//		queryNumber = Integer.parseInt(ns[1]);
-//		parseOrganisms();
-//		parseQueries();
+		sequences = new HashMap<String, char[]>();
+		scan = new Scanner(System.in);
+		String[] ns = scan.nextLine().trim().split(" ");
+		organismNumber = Integer.parseInt(ns[0]);
+		queryNumber = Integer.parseInt(ns[1]);
+		parseOrganisms();
+		parseQueries();
 	}
 
 	public void parseOrganisms() {
