@@ -29,12 +29,13 @@ public class Alignment {
 
 		init(map, cm);
 
-		for (int j = 1; j < wordJ.length; j++) {
-			for (int i = 1; i < wordI.length; i++) {
-				opt(i, j, cm, map); // opt(wordI.length-1, wordJ.length-1, cm,
-									// map) utan for loops?
-			}
-		}
+//		for (int j = 1; j < wordJ.length; j++) {
+//			for (int i = 1; i < wordI.length; i++) {
+//				opt(i, j, cm, map); // opt(wordI.length-1, wordJ.length-1, cm,
+//									// map) utan for loops?
+//			}
+//		}
+		opt(wordI.length-1, wordJ.length-1, cm, map);
 		//System.out.println(map[wordI.length - 1][wordJ.length - 1] + "");
 		String aStrings[] = alignmentStrings(cm, map);
 		System.out.println(aStrings[0]);
