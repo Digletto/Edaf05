@@ -16,6 +16,12 @@ public class SequenceParser {
 	public SequenceParser() {
 		sequences = new HashMap<String, char[]>();
 		scan = new Scanner(System.in);
+//		try {
+//			scan = new Scanner(new File("tests/gorilla/toy.in"));
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		String[] ns = scan.nextLine().trim().split(" ");
 		organismNumber = Integer.parseInt(ns[0]);
 		queryNumber = Integer.parseInt(ns[1]);
