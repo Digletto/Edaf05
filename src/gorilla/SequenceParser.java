@@ -2,7 +2,9 @@ package gorilla;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 public class SequenceParser {
@@ -11,7 +13,7 @@ public class SequenceParser {
 	int queryNumber;
 	Scanner scan;
 	HashMap<String, char[]> sequences;
-	HashMap<String, String> queries = new HashMap<String, String>();
+	List<String> queries = new ArrayList<String>();
 
 	public SequenceParser() {
 		sequences = new HashMap<String, char[]>();
@@ -45,7 +47,7 @@ public class SequenceParser {
 			String name1 = line[0];
 			String name2 = line[1];
 			
-			queries.put(name1, name2);
+			queries.add(name1 + ";" + name2);
 		}
 	}
 
@@ -53,15 +55,8 @@ public class SequenceParser {
 		return sequences.get(name);
 	}
 
-	public HashMap<String, String> getQueries() {
+	public List<String> getQueries() {
 		return queries;
-	}
-	
-	public String getQuery(String query) {
-
-		//get corresponding sequence
-		return queries.get(query);
-
 	}
 
 	public char[] parseI() {

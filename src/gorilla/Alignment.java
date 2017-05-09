@@ -1,5 +1,6 @@
 package gorilla;
 
+import java.util.List;
 import java.util.Set;
 
 public class Alignment {
@@ -11,10 +12,12 @@ public class Alignment {
 //		
 //		run(wordI, wordJ);
 
-		Set<String> queries = sp.getQueries().keySet();
+		List<String> queries = sp.getQueries();
 
 		for (String s : queries) {
-			run(sp.getSequence(s), sp.getSequence(sp.getQuery(s)));
+			String q1 = s.split(";")[0];
+			String q2 = s.split(";")[1];
+			run(sp.getSequence(q1),sp.getSequence(q2));
 		}
 	}
 
