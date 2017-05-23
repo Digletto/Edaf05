@@ -1,5 +1,7 @@
 package wordLadders;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,13 +9,33 @@ import java.util.Scanner;
 
 public class LadderParser {
 
-	public HashMap<String, String[]> words;
+	public HashMap<String, ArrayList<String>> words = new HashMap<String, ArrayList<String>>();
 	public ArrayList<String[]> queries = new ArrayList<String[]>();
 	public String wordList[];
 	private Scanner scan;
 
 	public LadderParser(InputStream in) {
 		scan = new Scanner(in);
+		String nxtLine = scan.nextLine();
+		String split[] = nxtLine.split(" ");
+		int nbrOfWords = Integer.parseInt(split[0]);
+		int nbrOfQueries = Integer.parseInt(split[1]);
+
+		readWords(nbrOfWords);
+		readQueries(nbrOfQueries);
+
+		Similarity sim = new Similarity();
+		sim.constructSimilarity(words, wordList);
+		scan.close();
+	}
+
+	public LadderParser(File file) {
+		try {
+			scan = new Scanner(file);
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		String nxtLine = scan.nextLine();
 		String split[] = nxtLine.split(" ");
 		int nbrOfWords = Integer.parseInt(split[0]);
